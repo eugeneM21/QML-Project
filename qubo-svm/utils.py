@@ -72,6 +72,12 @@ def compute_metrics(SVM,alpha,data,t,b,N,validation_pts):
                 tn += 1
             else:
                 fn += 1
+    
+    # Print the results
+    print(f"True Positives (TP): {tp}")
+    print(f"False Positives (FP): {fp}")
+    print(f"True Negatives (TN): {tn}")
+    print(f"False Negatives (FN): {fn}")
 
     precision = tp / (tp + fp)
     recall = tp / (tp + fn)
