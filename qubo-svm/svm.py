@@ -20,13 +20,14 @@ def delta(i, j):
 
 
 class SVM:
-    def __init__(self,B,K,C,gamma,xi,N,sampler_type) -> None:
+    def __init__(self,B,K,C,gamma,xi,N,sampler_type, label) -> None:
         self.gamma = gamma
         self.B = B
         self.K = K 
         self.C = C 
         self.xi = xi 
         self.N = N
+        self.label = label
         self.sampler_type = sampler_type
 
         if(sampler_type == 'HQPU'):
@@ -78,7 +79,7 @@ class SVM:
         now = time.perf_counter()
 
         if(self.sampler_type == 'HQPU'):
-            response = self.sampler.sample_qubo(qubo)
+            response = self.sampler.sample_qubo(qubo, label= self.label)
         if(self.sampler_type == 'SA'):
             response = self.sampler.sample_qubo(qubo, num_reads=100)
         if(self.sampler_type == 'QPU'):

@@ -23,6 +23,7 @@ def parseArguments():
     parser.add_argument("--B",type = int,default= 2,help = 'Base for encoding Variable')
     parser.add_argument("--K",type = int,default= 2,help = 'Number of variables used for encoding')
     parser.add_argument('--fig',default=False,action='store_true',help = "Plot Figure")
+    parser.add_argument('--label',default="Default Label",help = "Give Task a Label")
     args = parser.parse_args()
     args_config = vars(args)
     print(args_config)
@@ -32,7 +33,7 @@ def main():
     args = parseArguments()
 
     data,t = DataLoader.load_data(args['dataFile'],args['trainingPoints'],args['validationPoints'])
-    _SVM = SVM(args['B'],args['K'],args['C'],args['gamma'],args['xi'],args['trainingPoints'],args['type'])
+    _SVM = SVM(args['B'],args['K'],args['C'],args['gamma'],args['xi'],args['trainingPoints'],args['type'], args["label"])
     alpha, b = _SVM.train_SVM(data, t)
     # alpha, b = _SVM.train_SVM_with_gurobi(data, t)
     
