@@ -10,7 +10,7 @@ def load_data(data_file,N,validation_pts):
         if(training_data[i][-1] == 0):
             training_data[i][-1] = -1
 
-    data = training_data[:N+validation_pts, :2]
+    data = training_data[:N+validation_pts, :9]
     t = training_data[:N + validation_pts, -1]
 
     x_min, x_max = 1000, 0
